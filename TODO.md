@@ -13,6 +13,7 @@
 - [ ] Merge imports into one line
 - [ ] Remove type annotations
 - [ ] Rename all variables to `a`, `b`, `c`, etc. (This *could* be implemented in Formatting, but likely *shouldn't*)
+- [ ] Assign builtins used multiple times to a variable (e.g. `a, b = range(5), range(3)` becomes `r=range;a,b=r(5),r(3)`)
 
 ### Future Possibilites 🔮
 - [ ] "Danger" Mode (allow certain shortens that might harm code execution)
