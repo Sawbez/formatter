@@ -9,7 +9,7 @@
 - [ ] Replace all possible newlines with `;`. This will likely require extended AST analysis (could be *future* category).
 
 ### AST Manipulations 🛠
-- [!] **BLOCKER:** Manipulate the AST before converting
+- [ ] **⚠ BLOCKER:** Manipulate the AST before converting
 - [ ] Merge imports into one line
 - [ ] Remove type annotations
 - [ ] Rename all variables to `a`, `b`, `c`, etc. (This *could* be implemented in Formatting, but likely *shouldn't*)
