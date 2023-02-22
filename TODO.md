@@ -6,7 +6,8 @@
 - [ ] Prevent extra new lines (particularly for things in parentheses)
 - [ ] Remove any spaces around parentheses
 - [ ] Remove newline after statements with a single thing in their body (e.g. `if x:b` instead of `if x:<NEWLINE>b`)
-- [ ] Replace all possible newlines with `;`. This will likely require extended AST analysis (could be *future* category).
+- [ ] Replace all possible newlines with `;`. This will likely require extended AST analysis (could be *future* category)
+- [ ] Remove spacing around string literals if possible
 
 ### AST Manipulations 🛠
 - [ ] **⚠ BLOCKER: Add the ability to manipulate the AST before converting**
@@ -19,8 +20,8 @@
 - [ ] "Danger" Mode (allow certain shortens that might harm code execution)
   - [ ] Change all imports to star imports
   - [ ] Remove `assert` statements
-- [ ] Switch to a custom AST-based converter with less limitations from SourceGenerator.
-  - [ ] This could also free us from the 3-Clause BSD if we wanted to use Unlicense or MIT.
+- [ ] Switch to a custom AST-based converter with less limitations from SourceGenerator
+  - [ ] This could also free us from the 3-Clause BSD if we wanted to use Unlicense or MIT
 
 ### Completed ✓
 - [x] Basic space removals
