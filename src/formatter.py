@@ -242,19 +242,41 @@ class FormatterSourceGenerator(SourceGenerator):
             self.newline()
 
     def visit_If(self, node):
+        old_newline = self.newline
+        self.newline = lambda node=None: ''
+
         set_precedence(node, node.test)
         self.statement(node, "if ", node.test, ":")
-        self.body(node.body)
+
+        if len(node.body) == 1 and isinstance(node.body[0], ast.Expr):
+            self.visit(node.body[0].value)
+        else:
+            for i, stmt in enumerate(node.body):
+                if i > 0:
+                    self.write("; ")
+                self.visit(stmt)
+
         while True:
             else_ = node.orelse
             if len(else_) == 1 and isinstance(else_[0], ast.If):
                 node = else_[0]
                 set_precedence(node, node.test)
                 self.write(self.newline, "elif ", node.test, ":")
-                self.body(node.body)
-            else:
-                self.else_body(else_)
+                self.visit(node.body[0])
+            elif else_:
+                self.newline = old_newline
+                self.write(self.newline, "else:")
+                self.newline = lambda node=None: ''
+                for i, stmt in enumerate(else_):
+                    if i > 0:
+                        self.write(";")
+                    self.visit(stmt)
                 break
+            else:
+                break
+
+        self.newline = old_newline
+
 
     def visit_For(self, node, is_async=False):
         set_precedence(node, node.target)
