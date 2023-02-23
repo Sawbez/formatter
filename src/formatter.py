@@ -249,10 +249,8 @@ class FormatterSourceGenerator(SourceGenerator):
         self.statement(node, "if ", node.test, ":")
 
         if len(node.body) == 1 and isinstance(node.body[0], ast.Expr):
-            self.write(" ")
             self.visit(node.body[0].value)
         else:
-            self.write(" ")
             for i, stmt in enumerate(node.body):
                 if i > 0:
                     self.write("; ")
@@ -268,11 +266,10 @@ class FormatterSourceGenerator(SourceGenerator):
             elif else_:
                 self.newline = old_newline
                 self.write(self.newline, "else:")
-                self.write(" ")
                 self.newline = lambda node=None: ''
                 for i, stmt in enumerate(else_):
                     if i > 0:
-                        self.write("; ")
+                        self.write(";")
                     self.visit(stmt)
                 break
             else:
